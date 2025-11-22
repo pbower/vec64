@@ -117,6 +117,28 @@ impl<T> Vec64<T> {
         let vec = unsafe { Vec::from_raw_parts_in(ptr, len, capacity, Alloc64) };
         Self(vec)
     }
+
+    /// Splits the collection at the given index.
+    ///
+    /// Returns a newly allocated vector containing the elements in the range `[at, len)`.
+    /// After the call, the original vector will be left containing the elements `[0, at)` with its previous capacity unchanged.
+    ///
+    /// # Panics
+    /// Panics if `at > len`.
+    ///
+    /// # Examples
+    /// ```
+    /// use vec64::Vec64;
+    ///
+    /// let mut vec = Vec64::from(vec![1, 2, 3, 4, 5]);
+    /// let vec2 = vec.split_off(2);
+    /// assert_eq!(vec, [1, 2]);
+    /// assert_eq!(vec2, [3, 4, 5]);
+    /// ```
+    #[inline]
+    pub fn split_off(&mut self, at: usize) -> Self {
+        Vec64(self.0.split_off(at))
+    }
 }
 
 // Only require Send+Sync for parallel iterator methods
