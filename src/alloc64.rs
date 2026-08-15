@@ -169,14 +169,6 @@ unsafe impl Allocator for Alloc64 {
 
         Ok(new_block)
     }
-
-    /// Returns a reference to the allocator. Useful for adapter traits and APIs requiring allocator references.
-    fn by_ref(&self) -> &Self
-    where
-        Self: Sized,
-    {
-        self
-    }
 }
 
 #[cfg(test)]
@@ -262,12 +254,6 @@ mod alloc64_tests {
         }
     }
 
-    #[test]
-    fn test_by_ref() {
-        let a = Alloc64;
-        let b = a.by_ref();
-        assert!(std::ptr::eq(&a, b));
-    }
     #[test]
     fn test_allocator_produces_64_alignment() {
         let a = Alloc64;

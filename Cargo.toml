@@ -1,6 +1,6 @@
 [package]
 name = "vec64"
-version = "0.4.7"
+version = "0.5.0"
 edition = "2024"
 description = "High-performance Rust vector type with automatic 64-byte SIMD alignment."
 license = "Apache-2.0"
