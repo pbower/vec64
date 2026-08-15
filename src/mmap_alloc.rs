@@ -403,13 +403,6 @@ unsafe impl Allocator for MAllocPg64 {
 
         Ok(unsafe { fat_ptr(ptr, new_mapped) })
     }
-
-    fn by_ref(&self) -> &Self
-    where
-        Self: Sized,
-    {
-        self
-    }
 }
 
 #[cfg(test)]
@@ -730,12 +723,5 @@ mod tests {
         assert_eq!(mapped_size(HUGE_PAGE), HUGE_PAGE);
         assert_eq!(mapped_size(HUGE_PAGE + 1), HUGE_PAGE * 2);
         assert_eq!(mapped_size(HUGE_PAGE * 3), HUGE_PAGE * 3);
-    }
-
-    #[test]
-    fn test_by_ref() {
-        let a = MAllocPg64;
-        let b = a.by_ref();
-        assert!(std::ptr::eq(&a, b));
     }
 }
