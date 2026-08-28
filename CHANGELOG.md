@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.5.1] - 2026-08-28
+
+Nightly compatibility release.
+
+The unstable `allocator_api` raw-parts methods were renamed for consistency
+with `Box::into_raw_with_allocator`, so `Vec::into_raw_parts_with_alloc` is
+now `Vec::into_raw_parts_with_allocator`. This only affects the `mmap`
+feature's internal `try_mremap_append` path, so there is no public API
+change and this is a patch version bump.
+
 ## [0.5.0] - 2026-08-15
 
 Nightly compatibility release.
