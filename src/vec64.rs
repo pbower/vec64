@@ -553,7 +553,7 @@ impl<T> Vec64<T> {
 
         let dst_ptr = unsafe { (self.0.as_mut_ptr() as *mut u8).add(dst_offset_bytes) };
 
-        let (src_ptr, _src_len, _src_cap, _src_alloc) = other.0.into_raw_parts_with_alloc();
+        let (src_ptr, _src_len, _src_cap, _src_alloc) = other.0.into_raw_parts_with_allocator();
         let src_ptr_u8 = src_ptr as *mut u8;
 
         let placed = unsafe {
